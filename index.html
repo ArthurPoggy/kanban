@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>📋 Kanban Board</h1>
+        <button id="btn-new-task" class="btn-primary">+ Nova Tarefa</button>
+    </header>
+
+    <main class="board">
+        <div class="column" data-status="todo">
+            <div class="column-header">
+                <h2>📝 A Fazer</h2>
+                <span class="task-count">0</span>
+            </div>
+            <div class="tasks-container" data-status="todo"></div>
+        </div>
+
+        <div class="column" data-status="in-progress">
+            <div class="column-header">
+                <h2>🔄 Em Progresso</h2>
+                <span class="task-count">0</span>
+            </div>
+            <div class="tasks-container" data-status="in-progress"></div>
+        </div>
+
+        <div class="column" data-status="review">
+            <div class="column-header">
+                <h2>👀 Revisão</h2>
+                <span class="task-count">0</span>
+            </div>
+            <div class="tasks-container" data-status="review"></div>
+        </div>
+
+        <div class="column" data-status="done">
+            <div class="column-header">
+                <h2>✅ Concluído</h2>
+                <span class="task-count">0</span>
+            </div>
+            <div class="tasks-container" data-status="done"></div>
+        </div>
+    </main>
+
+    <!-- Modal para criar/editar tarefa -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Nova Tarefa</h3>
+                <button class="btn-close" id="btn-close-modal">&times;</button>
+            </div>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+
+                <div class="form-group">
+                    <label for="task-title">Título *</label>
+                    <input type="text" id="task-title" required placeholder="Digite o título da tarefa">
+                </div>
+
+                <div class="form-group">
+                    <label for="task-description">Descrição</label>
+                    <textarea id="task-description" rows="3" placeholder="Descreva a tarefa"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="task-priority">Prioridade</label>
+                        <select id="task-priority">
+                            <option value="low">🟢 Baixa</option>
+                            <option value="medium" selected>🟡 Média</option>
+                            <option value="high">🔴 Alta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-due-date">Data Limite</label>
+                        <input type="date" id="task-due-date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-tags">Tags (separadas por vírgula)</label>
+                    <input type="text" id="task-tags" placeholder="ex: frontend, bug, urgente">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação de exclusão -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3>Confirmar Exclusão</h3>
+                <button class="btn-close" id="btn-close-delete-modal">&times;</button>
+            </div>
+            <p>Tem certeza que deseja excluir esta tarefa?</p>
+            <div class="form-actions">
+                <button class="btn-secondary" id="btn-cancel-delete">Cancelar</button>
+                <button class="btn-danger" id="btn-confirm-delete">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
