@@ -45,6 +45,20 @@ header h1 {
     font-weight: 600;
 }
 
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-blue);
+}
+
 /* Botões */
 .btn-primary {
     background: var(--accent-blue);
